@@ -16,7 +16,7 @@ const month = new Date().toISOString().slice(0, 7);
 let goalsCache = [];
 
 async function api(path, opts) {
-  const r = await fetch("/api" + path, opts);
+  const r = await fetch("https://track-my-spend-96og.onrender.com/api" + path, opts);
   const text = await r.text();
 
   let data = {};

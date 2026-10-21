@@ -111,6 +111,15 @@ int main() {
     load();
 
     httplib::Server svr;
+    svr.set_default_headers({
+    {"Access-Control-Allow-Origin", "*"},
+    {"Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"},
+    {"Access-Control-Allow-Headers", "Content-Type"}
+});
+
+svr.Options(R"(/api.*)", [](const httplib::Request& req, httplib::Response& res) {
+    res.status = 204;
+});
 
     // Frontend static files mount
     svr.set_mount_point("/", "../frontend");
