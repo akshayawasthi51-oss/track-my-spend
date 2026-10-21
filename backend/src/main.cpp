@@ -8,6 +8,7 @@
 #include <mutex>
 #include <ctime>
 #include <string>
+#include <cstdlib>
 
 using json = nlohmann::json;
 
@@ -287,6 +288,8 @@ int main() {
     });
 
     std::cout << "Server started at http://localhost:8080\n";
-    svr.listen("localhost", 8080);
+   const char* port_env = std::getenv("PORT");
+int port = port_env ? std::atoi(port_env) : 8080;
+svr.listen("0.0.0.0", port);
     return 0;
 }
