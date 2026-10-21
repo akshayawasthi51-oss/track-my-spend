@@ -1,0 +1,728 @@
+
+/* ===== 1. GLOBAL DESIGN ===== */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #126b50;
+    --green-dark: #0b4034;
+    --green-light: #e1f3e9;
+    --background: #f3f6f3;
+    --white: #ffffff;
+    --text: #172b25;
+    --muted: #74827c;
+    --border: #e2e9e4;
+    --orange: #ed9b37;
+    --red: #d94d4d;
+    --shadow: 0 5px 22px rgba(20, 55, 40, 0.055);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 28px;
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, p {
+    margin-top: 0;
+}
+
+h1, h2, h3, h4 {
+    letter-spacing: -0.4px;
+}
+
+h2 {
+    font-size: 23px;
+    margin-bottom: 20px;
+    color: var(--green-dark);
+}
+
+h3 {
+    font-size: 16px;
+}
+
+p {
+    color: var(--muted);
+}
+
+/* ===== 2. HEADER ===== */
+
+.main-header {
+    max-width: 1450px;
+    margin: 0 auto 30px;
+    padding: 28px 34px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: linear-gradient(120deg, #ffffff, #eaf5ed);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.main-header img {
+    width: 200px;
+    max-width: 35%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.main-header h1 {
+    font-size: clamp(28px, 3vw, 42px);
+    line-height: 1.2;
+    margin-bottom: 10px;
+    color: var(--green-dark);
+}
+
+.main-header p {
+    margin-bottom: 0;
+    font-size: 15px;
+}
+
+/* ===== 3. PAGE SECTIONS ===== */
+
+main {
+    max-width: 1450px;
+    margin: auto;
+}
+
+section {
+    margin: 0 auto 34px;
+}
+
+section h2 {
+    padding-left: 12px;
+    border-left: 4px solid var(--green);
+}
+
+/* ===== 4. FINANCIAL OVERVIEW ===== */
+
+.overview {
+    max-width: 100%;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.card {
+    position: relative;
+    padding: 23px 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--green);
+}
+
+.card:nth-child(2)::before {
+    background: var(--orange);
+}
+
+.card:nth-child(3)::before {
+    background: #389c76;
+}
+
+.card:nth-child(4)::before {
+    background: #4389d6;
+}
+
+.card:nth-child(5)::before {
+    background: #8c78c9;
+}
+
+.card:hover,
+.category-card:hover,
+.insight-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(20, 55, 40, 0.09);
+}
+
+.card h3 {
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.card p {
+    margin-bottom: 0;
+    color: var(--green-dark);
+    font-size: clamp(18px, 1.6vw, 25px);
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+/* ===== 5. MONTHLY BUDGET ===== */
+
+.budget {
+    max-width: 100%;
+}
+
+.budget-card {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.budget-card > div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.budget-card span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.budget-card strong {
+    color: var(--green-dark);
+    font-size: 22px;
+    overflow-wrap: anywhere;
+}
+
+.budget-card .status strong {
+    color: var(--green);
+}
+
+.budget-progress {
+    grid-column: 1 / -1;
+    padding: 22px;
+    background: #f5f8f5;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.budget-progress-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.budget-progress-header strong {
+    font-size: 16px;
+}
+
+.budget-progress-bar,
+.progress-bar {
+    width: 100%;
+    height: 11px;
+    background: #dfe8e1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.budget-progress-fill {
+    width: 95%;
+    height: 100%;
+    background: linear-gradient(90deg, #edb14e, #e58b2c);
+    border-radius: inherit;
+}
+
+.budget-progress p {
+    margin: 10px 0 0;
+    font-size: 13px;
+}
+
+/* ===== 6. EXPENSE CATEGORIES ===== */
+
+.expenses {
+    max-width: 100%;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.category-card {
+    padding: 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-card h3 {
+    margin-bottom: 12px;
+    color: #52665c;
+}
+
+.category-card p {
+    margin-bottom: 0;
+    color: var(--green-dark);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* ===== 7. SAVINGS SUMMARY ===== */
+
+.savings-summary {
+    max-width: 100%;
+}
+
+.savings-summary-card {
+    padding: 26px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    background: linear-gradient(120deg, #ffffff, #eaf5ed);
+    border: 1px solid #d7e8dc;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.savings-summary-card > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.savings-summary-card span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.savings-summary-card strong {
+    color: var(--green);
+    font-size: 23px;
+    overflow-wrap: anywhere;
+}
+
+/* ===== 8. SAVINGS GOALS ===== */
+
+.savings {
+    max-width: 100%;
+}
+
+.saving-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.saving-group {
+    padding: 25px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.saving-group > h3 {
+    margin-bottom: 20px;
+    color: var(--green);
+    font-size: 19px;
+}
+
+.saving-card {
+    padding: 20px;
+    margin-top: 14px;
+    background: #f5f8f5;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.saving-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.saving-info h4 {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.saving-info p {
+    margin-bottom: 12px;
+    font-size: 13px;
+    text-align: right;
+}
+
+.progress-bar {
+    height: 10px;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #16835e, #43b58a);
+    border-radius: inherit;
+}
+
+.remaining {
+    margin: 12px 0 0;
+    font-size: 13px;
+}
+
+/* ===== 9. ADD TRANSACTION ===== */
+
+.add-transaction {
+    max-width: 100%;
+}
+
+.transaction-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.4fr 1fr 1.2fr auto;
+    gap: 12px;
+    padding: 25px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.transaction-form input,
+.transaction-form select {
+    width: 100%;
+    min-width: 0;
+    padding: 13px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    background: #fff;
+    border: 1px solid #d5e0d8;
+    border-radius: 9px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.transaction-form input:focus,
+.transaction-form select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(18, 107, 80, 0.10);
+}
+
+button {
+    font-family: inherit;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.transaction-form button,
+.quick-actions button {
+    padding: 13px 18px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.transaction-form button:hover,
+.quick-actions button:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+}
+
+/* ===== 10. RECENT TRANSACTIONS ===== */
+
+.transactions {
+    max-width: 100%;
+}
+
+.transaction-box {
+    padding: 22px;
+    overflow-x: auto;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 17px 16px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+th {
+    background: #edf5ef;
+    color: var(--green-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+td {
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #f5f9f5;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ===== 11. FINANCIAL INSIGHTS ===== */
+
+.insights {
+    max-width: 100%;
+}
+
+.insight-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.insight-card {
+    padding: 23px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.insight-card span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.insight-card h3 {
+    margin: 12px 0;
+    color: var(--green);
+    font-size: 20px;
+    overflow-wrap: anywhere;
+}
+
+.insight-card p {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+/* ===== 12. QUICK ACTIONS ===== */
+
+.quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 35px;
+}
+
+.quick-actions button {
+    font-size: 14px;
+}
+
+/* ===== 13. RESPONSIVE DESIGN ===== */
+
+@media (max-width: 1100px) {
+    .summary-cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .transaction-form {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .insight-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 750px) {
+    body {
+        padding: 16px;
+    }
+
+    .main-header {
+        padding: 22px;
+        gap: 18px;
+    }
+
+    .main-header img {
+        width: 130px;
+    }
+
+    .summary-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .saving-section {
+        grid-template-columns: 1fr;
+    }
+
+    .budget-card,
+    .savings-summary-card {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .transaction-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+    }
+
+    .main-header img {
+        max-width: 180px;
+        width: 100%;
+    }
+
+    .main-header h1 {
+        font-size: 29px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .summary-cards,
+    .category-grid,
+    .budget-card,
+    .savings-summary-card,
+    .transaction-form,
+    .insight-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card,
+    .category-card,
+    .insight-card {
+        padding: 20px;
+    }
+
+    .saving-group,
+    .transaction-box {
+        padding: 15px;
+    }
+
+    .saving-card {
+        padding: 15px;
+    }
+
+    .quick-actions {
+        flex-direction: column;
+    }
+
+    .quick-actions button {
+        width: 100%;
+    }
+    /* ===== Goal completed + toast ===== */
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #0f6b4f;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.goal-done .progress {
+    background: #0f6b4f;
+}
+
+.goal-badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #e3f4ec;
+    color: #0f6b4f;
+    font-size: 13px;
+    font-weight: 600;
+}
+}
+/* ===== Sundar aur Modern Delete Buttons ===== */
+.del-tx, .delete-goal {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.del-tx:hover, .delete-goal:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-color: #dc2626;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+  transform: translateY(-1px);
+}
+
+.del-tx:active, .delete-goal:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.del-tx:disabled, .delete-goal:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}

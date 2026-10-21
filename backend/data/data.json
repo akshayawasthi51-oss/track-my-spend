@@ -1,0 +1,55 @@
+{
+  "budget": 500000.0,
+  "goals": [],
+  "nextId": 41,
+  "transactions": [
+    {
+      "amount": 200000.0,
+      "category": "Income",
+      "date": "2026-10-19",
+      "description": "Salary",
+      "id": 34,
+      "type": "Income"
+    },
+    {
+      "amount": 5000.0,
+      "category": "Dining Out",
+      "date": "2026-10-20",
+      "description": "Birthday Food",
+      "id": 36,
+      "type": "Expense"
+    },
+    {
+      "amount": 50.0,
+      "category": "Groceries",
+      "date": "2026-10-22",
+      "description": "Milk and curd",
+      "id": 37,
+      "type": "Expense"
+    },
+    {
+      "amount": 2000.0,
+      "category": "Savings",
+      "date": "2026-10-19",
+      "description": "savings",
+      "id": 38,
+      "type": "Savings"
+    },
+    {
+      "amount": 50000.0,
+      "category": "Savings",
+      "date": "2026-11-05",
+      "description": "savings",
+      "id": 39,
+      "type": "Savings"
+    },
+    {
+      "amount": 5000.0,
+      "category": "Savings",
+      "date": "2026-10-20",
+      "description": "savings",
+      "id": 40,
+      "type": "Savings"
+    }
+  ]
+}

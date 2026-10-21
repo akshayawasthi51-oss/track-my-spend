@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track My Spend | An Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <img src="track-my-spend-logo.png" alt="Track My Spend Logo">
+
+        <div class="header-text">
+            <h1>Expense Tracker</h1>
+            <p>Manage your money. Track your expenses. Achieve your goals.</p>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <button type="button" id="btnExpense">Add Expense</button>
+            <button type="button" id="btnIncome">Add Income</button>
+            <button type="button" id="btnGoal">Add Savings Goal</button>
+        </section>
+
+        <!-- Financial Overview -->
+        <section class="overview">
+            <h2>Financial Overview</h2>
+
+            <div class="summary-cards">
+
+                <div class="card">
+                    <h3>Total Income</h3>
+                    <p id="totalIncome">₹0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Total Expenses</h3>
+                    <p id="totalExpenses">₹0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Total Savings</h3>
+                    <p id="totalSavings">₹0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Available Balance</h3>
+                    <p id="balance">₹0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Surplus / Deficit</h3>
+                    <p id="surplus">Surplus: ₹0</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Monthly Budget -->
+        <section class="budget">
+            <h2>Monthly Budget</h2>
+
+            <div class="budget-card">
+
+                <div class="budget-item">
+                    <span>Monthly Budget</span>
+                    <strong id="budgetTotal">₹0</strong>
+                    <button onclick="openBudgetModal()" class="btn-budget" style="margin-left: 10px; cursor: pointer;">Change Budget</button>
+                </div>
+
+                <div class="budget-item">
+                    <span>Total Expenses</span>
+                    <strong id="budgetExpenses">₹0</strong>
+                </div>
+
+                <div class="budget-item">
+                    <span>Remaining Budget</span>
+                    <strong id="budgetRemaining">₹0</strong>
+                </div>
+
+                <div class="budget-item status">
+                    <span>Budget Status</span>
+                    <strong id="budgetStatus">Within Budget</strong>
+                </div>
+
+            </div>
+
+            <div class="budget-progress">
+                <div class="budget-progress-header">
+                    <span>Budget Usage</span>
+                    <strong id="budgetPct">0%</strong>
+                </div>
+
+                <div class="budget-progress-bar">
+                    <div class="budget-progress-fill" id="budgetBar"></div>
+                </div>
+
+                <p id="budgetUsedText">₹0 of ₹0 used</p>
+            </div>
+        </section>
+
+        <!-- Expense Categories -->
+        <section class="expenses">
+            <h2>Expense Categories</h2>
+
+            <div class="category-grid">
+
+                <div class="category-card">
+                    <h3>🏠 Rent &amp; Bills</h3>
+                    <p data-cat="Rent &amp; Bills">₹0</p>
+                </div>
+
+                <div class="category-card">
+                    <h3>🛒 Groceries</h3>
+                    <p data-cat="Groceries">₹0</p>
+                </div>
+
+                <div class="category-card">
+                    <h3>🚗 Transport</h3>
+                    <p data-cat="Transport">₹0</p>
+                </div>
+
+                <div class="category-card">
+                    <h3>🍔 Dining Out</h3>
+                    <p data-cat="Dining Out">₹0</p>
+                </div>
+
+                <div class="category-card">
+                    <h3>🎬 Entertainment</h3>
+                    <p data-cat="Entertainment">₹0</p>
+                </div>
+
+                <div class="category-card">
+                    <h3>🛍️ Shopping</h3>
+                    <p data-cat="Shopping">₹0</p>
+                </div>
+
+                <div class="category-card">
+                    <h3>📚 Education</h3>
+                    <p data-cat="Education">₹0</p>
+                </div>
+
+                <div class="category-card">
+                    <h3>🏥 Healthcare</h3>
+                    <p data-cat="Healthcare">₹0</p>
+                </div>
+
+                <div class="category-card">
+                    <h3>📦 Miscellaneous</h3>
+                    <p data-cat="Miscellaneous">₹0</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Savings Summary -->
+        <section class="savings-summary">
+            <h2>Savings Summary</h2>
+
+            <div class="savings-summary-card">
+                <div>
+                    <span>Total Saved</span>
+                    <strong id="goalsTotalSaved">₹0</strong>
+                </div>
+                <div>
+                    <span>Large-Cap Saved</span>
+                    <strong id="goalsLargeSaved">₹0</strong>
+                </div>
+                <div>
+                    <span>Small-Cap Saved</span>
+                    <strong id="goalsSmallSaved">₹0</strong>
+                </div>
+                <div>
+                    <span>Monthly Saving Target</span>
+                    <strong>₹20,000</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Savings Goals -->
+        <section class="savings">
+            <h2>Savings Goals</h2>
+
+            <div class="saving-section">
+                <div class="saving-group">
+                    <h3>Large-Cap Savings</h3>
+                    <div id="largeGoals"></div>
+                </div>
+
+                <div class="saving-group">
+                    <h3>Small-Cap Savings</h3>
+                    <div id="smallGoals"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Goal -->
+        <section class="add-transaction" id="goalSection">
+            <h2>Add Savings Goal</h2>
+
+            <form class="transaction-form" id="goalForm">
+                <input type="text" name="name" placeholder="Goal name (e.g. Laptop)" required>
+                <input type="number" name="target" placeholder="Target (₹)" min="1" step="1" required>
+                <input type="number" name="saved" placeholder="Already saved (₹)" min="0" step="1">
+                <select name="tier" required>
+                    <option value="small">Small-Cap</option>
+                    <option value="large">Large-Cap</option>
+                </select>
+                <button type="submit">Add Goal</button>
+            </form>
+        </section>
+
+        <!-- Add Transaction -->
+        <section class="add-transaction" id="txSection">
+            <h2>Add Transaction</h2>
+
+            <form class="transaction-form" id="txForm">
+
+                <input
+                    type="text"
+                    name="description"
+                    placeholder="Description"
+                    aria-label="Transaction description"
+                    required
+                >
+
+                <input
+                    type="number"
+                    name="amount"
+                    placeholder="Amount (₹)"
+                    aria-label="Transaction amount"
+                    min="0.01"
+                    step="0.01"
+                    required
+                >
+
+                <select name="category" aria-label="Category" required>
+                    <option value="">Select Category</option>
+                    <option value="Rent & Bills">Rent &amp; Bills</option>
+                    <option value="Groceries">Groceries</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Dining Out">Dining Out</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Education">Education</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                    <option value="Income">Income</option>
+                    <option value="Savings">Savings</option>
+                </select>
+
+                <select name="type" aria-label="Transaction type" required>
+                    <option value="Expense">Expense</option>
+                    <option value="Income">Income</option>
+                    <option value="Savings">Savings</option>
+                </select>
+
+                <input
+                    type="date"
+                    name="date"
+                    aria-label="Transaction date"
+                    required
+                >
+
+                <button type="submit">Add Transaction</button>
+
+            </form>
+        </section>
+
+        <!-- Recent Transactions -->
+        <section class="transactions">
+            <h2>Recent Transactions</h2>
+
+            <div class="transaction-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="txBody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Financial Insights -->
+        <section class="insights">
+            <h2>Financial Insights</h2>
+
+            <div class="insight-grid">
+
+                <div class="insight-card">
+                    <span>Highest Expense</span>
+                    <h3 id="topCategory">—</h3>
+                    <p id="topAmount">₹0</p>
+                </div>
+
+                <div class="insight-card">
+                    <span>Savings Rate</span>
+                    <h3 id="savingsRate">0%</h3>
+                    <p id="savingsText">₹0 saved this month</p>
+                </div>
+
+                <div class="insight-card">
+                    <span>Daily Average Spend</span>
+                    <h3 id="dailyAvg">₹0</h3>
+                    <p>Based on current expenses</p>
+                </div>
+
+                <div class="insight-card">
+                    <span>Budget Status</span>
+                    <h3 id="insightStatus">Within Budget</h3>
+                    <p id="insightRemaining">₹0 remaining</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>Track My Spend | Plan • Track • Save</p>
+    </footer>
+
+    <script src="app.js" defer></script>
+
+</body>
+</html>
