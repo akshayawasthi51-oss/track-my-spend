@@ -1,3 +1,18 @@
+// Welcome message based on time
+function setWelcomeMessage() {
+    const hour = new Date().getHours();
+    const welcome = document.getElementById("welcome-message");
+
+    if (hour < 12) {
+        welcome.textContent = "Good Morning! Welcome to Track My Spend.";
+    } else if (hour < 17) {
+        welcome.textContent = "Good Afternoon! Welcome to Track My Spend.";
+    } else {
+        welcome.textContent = "Good Evening! Welcome to Track My Spend.";
+    }
+}
+
+setWelcomeMessage();
 const inr = n => "₹" + Number(n).toLocaleString("en-IN");
 
 const esc = s => String(s).replace(/[&<>"']/g, c =>
