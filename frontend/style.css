@@ -726,3 +726,25 @@ tbody tr:last-child td {
   cursor: not-allowed;
   transform: none;
 }
+.change-budget-btn {
+    background: linear-gradient(135deg, #00695c, #009688);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 105, 92, 0.2);
+}
+
+.change-budget-btn:hover {
+    background: linear-gradient(135deg, #004d40, #00796b);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 105, 92, 0.3);
+}
+
+.change-budget-btn:active {
+    transform: translateY(0);
+}
